@@ -1,4 +1,5 @@
 require 'openssl'
+require 'unicode_utils/downcase'
 
 class User < ActiveRecord::Base
   # параметры работы модуля шифрования паролей
@@ -11,6 +12,16 @@ class User < ActiveRecord::Base
 
   validates :email, :username, presence: true
   validates :email, :username, uniqueness: true
+
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+  validates :email, format: { with: VALID_EMAIL_REGEX },
+            uniqueness: { case_sensitive: false}
+
+  VALID_USERNAME_FORMAT = /[a-zA-Z0-9_]/
+  validates :username, format: { with: VALID_USERNAME_FORMAT },
+            uniqueness: { downcase: true }
+
+  validates :username, length: {in: 3..40}
 
   attr_accessor :password
 
