@@ -6,20 +6,15 @@ class User < ActiveRecord::Base
   ITERATIONS = 20000
   DIGEST = OpenSSL::Digest::SHA256.new
 
-
+  before_save { self.email = email.downcase, self.username = username.downcase }
 
   has_many :questions
 
   validates :email, :username, presence: true
   validates :email, :username, uniqueness: true
 
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-  validates :email, format: { with: VALID_EMAIL_REGEX },
-            uniqueness: { case_sensitive: false}
-
-  VALID_USERNAME_FORMAT = /[a-zA-Z0-9_]/
-  validates :username, format: { with: VALID_USERNAME_FORMAT },
-            uniqueness: { downcase: true }
+  # VALID_USERNAME_FORMAT = /[_a-zA-Z0-9]/
+  # validates :username, format: { with: VALID_USERNAME_FORMAT }
 
   validates :username, length: {in: 3..40}
 
