@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160608113259) do
+ActiveRecord::Schema.define(version: 20160616082514) do
 
   create_table "questions", force: :cascade do |t|
     t.string   "text"
@@ -33,5 +33,8 @@ ActiveRecord::Schema.define(version: 20160608113259) do
     t.string   "password_salt"
     t.string   "avatar_url"
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["username"], name: "index_users_on_username", unique: true
 
 end

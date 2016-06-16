@@ -11,15 +11,12 @@ class User < ActiveRecord::Base
   has_many :questions
 
   validates :email, :username, presence: true
-  validates :email, :username, uniqueness: true
 
   VALID_USERNAME_FORMAT = /\A[a-zA-Z0-9_]+\Z/
-  validates :username, format: { with: VALID_USERNAME_FORMAT },
-            uniqueness: {case_sensitive: false}
+  validates :username, format: { with: VALID_USERNAME_FORMAT }
 
   VALID_EMAIL_FORMAT = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-  validates :email, format: { with: VALID_EMAIL_FORMAT },
-            uniqueness: {case_sensitive: false}
+  validates :email, format: { with: VALID_EMAIL_FORMAT }
 
   validates :username, length: {in: 3..40}
 
