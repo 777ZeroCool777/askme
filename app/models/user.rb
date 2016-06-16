@@ -13,10 +13,12 @@ class User < ActiveRecord::Base
   validates :email, :username, presence: true
 
   VALID_USERNAME_FORMAT = /\A[a-zA-Z0-9_]+\Z/
-  validates :username, format: { with: VALID_USERNAME_FORMAT }
+  validates :username, format: { with: VALID_USERNAME_FORMAT },
+            uniqueness: { case_sensitive: false }
 
   VALID_EMAIL_FORMAT = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-  validates :email, format: { with: VALID_EMAIL_FORMAT }
+  validates :email, format: { with: VALID_EMAIL_FORMAT },
+            uniqueness: { case_sensitive: false }
 
   validates :username, length: {in: 3..40}
 
