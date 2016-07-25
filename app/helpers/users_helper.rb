@@ -18,4 +18,10 @@ module UsersHelper
       "#{question.size} вопросов"
     end
   end
+
+
+  def destroy
+    "Трали-вали"
+  end
+
 end
