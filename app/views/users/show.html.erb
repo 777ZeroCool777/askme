@@ -43,7 +43,7 @@
   <div class="user-questions buffer-both">
     <div class="questions-list">
       <div class="questions">
-        <%= questions %>
+        <%= sklonyator(@questions.size, "Нет вопросов", "вопрос", "вопроса", "вопросов") %>
       </div>
       <% @questions.each do |question| %>
           <%= render partial: 'questions/question', object: question %>

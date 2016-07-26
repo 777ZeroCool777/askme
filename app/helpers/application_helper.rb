@@ -13,21 +13,21 @@ module ApplicationHelper
   end
 
   # метод для склонения вопросов
-  def questions
-    ostatok = @questions.size % 10
+  def sklonyator(count, text, krokodil, krokodila, krokodilov)
+    ostatok = count % 10
 
-    ostatok100 = @questions.size % 100 # исключения для цифр от 11 до 14 родительный падеж (Кого? Чего?)
+    ostatok100 = count % 100 # исключения для цифр от 11 до 14 родительный падеж (Кого? Чего?)
 
-    if @questions.size == 0
-      "Нет вопросов"
+    if count == 0
+      text
     elsif ostatok100 >= 11 && ostatok100 <= 14
-      "#{@questions.size} вопросов"
+      "#{count} #{krokodilov}"
     elsif ostatok == 1
-      "#{@questions.size} вопрос"
+      "#{count} #{krokodil}"
     elsif ostatok >= 2 && ostatok <= 4
-      "#{@questions.size} вопроса"
+      "#{count} #{krokodila}"
     elsif ostatok > 4 || ostatok == 0
-      "#{@questions.size} вопросов"
+      "#{count} #{krokodilov}"
     end
   end
 
