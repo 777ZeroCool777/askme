@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
   ITERATIONS = 20000
   DIGEST = OpenSSL::Digest::SHA256.new
 
-  before_save { self.email = email.downcase }
-  before_save { self.username = username.downcase }
+  before_validation { self.email = email.downcase }
+  before_validation { self.username = username.downcase }
 
   has_many :questions
 
