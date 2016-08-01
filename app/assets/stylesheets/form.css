@@ -38,3 +38,8 @@
   list-style: none;
   margin-bottom: 10px;
 }
+
+.form-background-color_avatar {
+    width: 60px;
+    height: 40px;
+}
