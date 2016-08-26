@@ -5,4 +5,8 @@ class Question < ActiveRecord::Base
   validates :text, :user, presence: true
   validates :text, length: {maximum: 255}
 
+  validates :text, :user, presence: true
+
+  belongs_to :questioning_user, class_name: 'User'
+
 end

@@ -9,11 +9,12 @@
   # POST /questions
   def create
     @question = Question.new(question_params)
+    @question.questioning_user = current_user if current_user.present?
 
     if check_captcha(@question) && @question.save
       redirect_to user_path(@question.user), notice: 'Вопрос задан'
     else
-      render :new
+      render :edit
     end
   end
 
