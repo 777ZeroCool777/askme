@@ -31,6 +31,13 @@
     </div>
   </div>
 
+  <% if question.questioning_user.present? %>
+      <div class="question-questioning-user buffer-top">
+        <%= link_to "@#{question.questioning_user.username}", user_path(question.questioning_user) %>
+      </div>
+  <% end %>
+</div>
+
   <% if question.user == current_user %>
       <div class="question-actions">
         <%= link_to fa_icon(action_icon), edit_question_path(question) %>
