@@ -9,9 +9,9 @@
   # POST /questions
   def create
     @question = Question.new(question_params)
-    @question.author = current_user if current_user.present?
+    @question.author_id = current_user.id if current_user.present?
 
-    if check_captcha(@question) && @question.save
+    if verify_recaptcha(@question) && @question.save
       redirect_to user_path(@question.user), notice: 'Вопрос задан'
     else
       render :edit
@@ -20,7 +20,7 @@
 
   # PATCH/PUT /questions/1
   def update
-    if check_captcha(@question) && @question.update(question_params)
+    if verify_recaptcha(@question) && @question.update(question_params)
       redirect_to user_path(@question.user), notice: 'Вопрос сохранен'
     else
       render :edit
@@ -52,7 +52,4 @@
     end
   end
 
-  def check_captcha(model)
-    verify_recaptcha(model: model)
-  end
 end
