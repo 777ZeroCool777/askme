@@ -20,7 +20,7 @@
 
   # PATCH/PUT /questions/1
   def update
-    if @question.update(question_params) && check_captcha(@question)
+    if check_captcha(@question) && @question.update(question_params)
       redirect_to user_path(@question.user), notice: 'Вопрос сохранен'
     else
       render :edit
