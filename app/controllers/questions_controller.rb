@@ -53,6 +53,6 @@
   end
 
   def check_captcha(model)
-    verify_recaptcha(model: model) unless current_user.present?
+    verify_recaptcha(model: model)
   end
 end
