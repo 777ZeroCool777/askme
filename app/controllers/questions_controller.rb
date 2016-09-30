@@ -21,7 +21,11 @@
 
   # PATCH/PUT /questions/1
   def update
-    redirect_to user_path(@question.user), notice: 'Вопрос сохранен'
+    if @question.update(question_params)
+      redirect_to user_path(@question.user), notice: 'Вопрос сохранен'
+    else
+      render :edit
+    end
   end
 
   # DELETE /questions/1
