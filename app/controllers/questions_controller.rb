@@ -14,17 +14,14 @@
     if verify_recaptcha(@question) && @question.save
       redirect_to user_path(@question.user), notice: 'Вопрос задан'
     else
+      @captcha = false
       render :edit
     end
   end
 
   # PATCH/PUT /questions/1
   def update
-    if verify_recaptcha(@question) && @question.update(question_params)
-      redirect_to user_path(@question.user), notice: 'Вопрос сохранен'
-    else
-      render :edit
-    end
+    redirect_to user_path(@question.user), notice: 'Вопрос сохранен'
   end
 
   # DELETE /questions/1
